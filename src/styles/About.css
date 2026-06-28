@@ -1,0 +1,330 @@
+/* ─── About Section ────────────────────── */
+.about {
+  background-color: var(--tertiary);
+  padding: 100px 80px;
+}
+
+/* 3-column grid */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1.2fr;
+  gap: 48px;
+  max-width: 1300px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ─── Left Column ──────────────────────── */
+.about__left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 8px;
+}
+
+.about__heading {
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 300;
+  color: var(--primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.about__description {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: var(--secondary);
+  line-height: 1.75;
+  max-width: 340px;
+}
+
+.about__arrow {
+  margin-top: 16px;
+  width: 180px;
+  opacity: 0.7;
+}
+
+.about__arrow svg {
+  width: 100%;
+  height: auto;
+}
+
+/* ─── Middle Column ────────────────────── */
+.about__middle {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Stat card */
+.about__stat-card {
+  background-color: var(--white);
+  border-radius: 20px;
+  padding: 32px 30px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about__globe-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #F0F0F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about__stat-number {
+  font-size: clamp(52px, 5.5vw, 72px);
+  font-weight: 300;
+  color: var(--primary);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.about__stat-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--secondary);
+  line-height: 1.65;
+  max-width: 220px;
+}
+
+/* ─── Experience Timeline ──────────────── */
+.about__timeline {
+  background-color: var(--white);
+  border-radius: 18px;
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about__timeline-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  position: relative;
+  padding-bottom: 24px;
+}
+
+.about__timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.about__timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 14px;
+  bottom: 0;
+  width: 1px;
+  background-color: #E5E5E5;
+}
+
+.about__timeline-item:last-child::before {
+  display: none;
+}
+
+.about__timeline-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: #CECECE;
+  border: 2px solid var(--white);
+  flex-shrink: 0;
+  margin-top: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.about__timeline-dot--active {
+  background-color: #F97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.18);
+}
+
+.about__timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.about__timeline-period {
+  font-size: 11px;
+  color: var(--secondary);
+  opacity: 0.75;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.about__timeline-content strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+.about__timeline-content span:not(.about__timeline-period) {
+  font-size: 12.5px;
+  color: var(--secondary);
+  line-height: 1.5;
+}
+
+/* ─── Right Column ─────────────────────── */
+.about__right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Tech stack visual — Skills card */
+.about__tech-visual {
+  position: relative;
+  width: 75%;
+  align-self: flex-end;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 3 / 2.8;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  /* Offset the fixed navbar when scrolled to via #skills */
+  scroll-margin-top: 96px;
+}
+
+/* Brief highlight pulse when navigated to via #skills.
+   Both :target (direct URL hash) and the JS-applied class (repeat clicks). */
+.about__tech-visual:target,
+.about__tech-visual--highlight {
+  animation: skills-highlight 1.8s ease;
+}
+
+@keyframes skills-highlight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+    transform: scale(1);
+  }
+  18% {
+    box-shadow: 0 0 0 5px rgba(249, 115, 22, 0.55), 0 16px 50px rgba(249, 115, 22, 0.28);
+    transform: scale(1.025);
+  }
+  60% {
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.35), 0 12px 40px rgba(249, 115, 22, 0.18);
+    transform: scale(1.01);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+    transform: scale(1);
+  }
+}
+
+.about__tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__tech-tag {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--primary);
+  background-color: #F8F8F8;
+  border-radius: 100px;
+  padding: 5px 13px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+/* Orange corner accent */
+.about__orange-accent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  background-color: #F97316;
+  border-bottom-left-radius: 14px;
+}
+
+/* Bullet list */
+.about__right .about__bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.about__bullets .about__bullet {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.about__bullet .about__bullet-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background-color: var(--primary);
+  color: var(--tertiary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.about__bullet p {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--secondary);
+  line-height: 1.72;
+}
+
+/* ─── Responsive ───────────────────────── */
+@media (max-width: 1024px) {
+  .about {
+    padding: 80px 48px;
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+
+  .about__left {
+    grid-column: 1 / -1;
+  }
+
+  .about__tech-visual {
+    width: 100%;
+    align-self: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .about {
+    padding: 44px 24px;
+  }
+
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .about__arrow {
+    display: none;
+  }
+
+  .about__tech-visual {
+    width: 100%;
+  }
+}

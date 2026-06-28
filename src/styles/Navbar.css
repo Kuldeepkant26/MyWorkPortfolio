@@ -1,0 +1,368 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 68px;
+  background-color: rgba(248, 248, 248, 0.65);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ── Brand monogram + dropdown ── */
+.navbar .navbar__brand {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.navbar__brand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 6px 6px 6px;
+  font-family: var(--font);
+  border-radius: 100px;
+  transition: background 0.2s ease;
+}
+
+.navbar__brand-btn:hover {
+  background: rgba(34, 34, 34, 0.05);
+}
+
+/* The "K" badge */
+.navbar__brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar__brand:hover .navbar__brand-mark,
+.navbar__brand--open .navbar__brand-mark {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.navbar__brand-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+  padding-right: 2px;
+}
+
+.navbar__brand-caret {
+  color: var(--secondary);
+  transition: transform 0.3s ease;
+}
+
+.navbar__brand--open .navbar__brand-caret {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown menu ── */
+.navbar__brand-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  width: 270px;
+  background: var(--tertiary);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.97);
+  transform-origin: top left;
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s;
+}
+
+.navbar__brand--open .navbar__brand-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.navbar__brand-menu-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--secondary);
+  opacity: 0.6;
+  padding: 8px 12px 6px;
+}
+
+.navbar__brand-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 11px;
+  text-decoration: none;
+  transition: background 0.18s ease;
+}
+
+.navbar__brand-item:hover {
+  background: rgba(34, 34, 34, 0.06);
+}
+
+.navbar__brand-item-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: var(--primary);
+}
+
+.navbar__brand-item-icon svg { width: 17px; height: 17px; }
+
+.navbar__brand-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  flex: 1;
+}
+
+.navbar__brand-item-label {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.navbar__brand-item-sub {
+  font-size: 11.5px;
+  color: var(--secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar__brand-item-arrow {
+  color: var(--secondary);
+  opacity: 0;
+  transform: translate(-3px, 3px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  flex-shrink: 0;
+}
+
+.navbar__brand-item:hover .navbar__brand-item-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Nav links — centered absolutely */
+.navbar .navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar .navbar__links a {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--primary);
+  letter-spacing: 0.1px;
+  transition: color 0.2s ease;
+}
+
+.navbar .navbar__links a:hover {
+  color: var(--secondary);
+}
+
+/* CTA */
+.navbar .navbar__cta {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary);
+  letter-spacing: 0.3px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.navbar .navbar__cta:hover {
+  opacity: 0.65;
+}
+
+/* ── Hamburger toggle (hidden on desktop) ── */
+.navbar .navbar__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  /* Stays above the drawer so the X remains tappable to close. */
+  z-index: 260;
+}
+
+.navbar .navbar__toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--primary);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.navbar .navbar__toggle--open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar .navbar__toggle--open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar .navbar__toggle--open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile drawer ── */
+.navbar__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 205;
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.navbar__backdrop--show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.navbar__drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /* Above the navbar bar (200) so the panel covers it, but below
+     the toggle (260) so the close button stays reachable. */
+  z-index: 210;
+  width: min(78vw, 320px);
+  padding: 96px 36px 40px;
+  background-color: var(--tertiary);
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar__drawer--open {
+  transform: translateX(0);
+}
+
+.navbar__drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navbar__drawer-links a {
+  display: block;
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--primary);
+  letter-spacing: 0.2px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.navbar__drawer-links a:hover {
+  color: var(--secondary);
+  padding-left: 6px;
+}
+
+.navbar__drawer-cta {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--white);
+  background-color: var(--primary);
+  padding: 14px 24px;
+  border-radius: 30px;
+  transition: opacity 0.2s ease;
+}
+
+.navbar__drawer-cta:hover {
+  opacity: 0.85;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 0 24px;
+    height: 60px;
+  }
+
+  .navbar .navbar__links,
+  .navbar .navbar__cta {
+    display: none;
+  }
+
+  .navbar .navbar__toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 18px;
+  }
+
+  /* Keep just the "K" badge on very narrow screens */
+  .navbar__brand-name,
+  .navbar__brand-caret {
+    display: none;
+  }
+}

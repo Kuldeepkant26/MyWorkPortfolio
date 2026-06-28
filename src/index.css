@@ -1,0 +1,35 @@
+@import "tailwindcss";
+:root {
+  --primary: #222222;
+  --secondary: #7B7B7B;
+  --tertiary: #F8F8F8;
+  --white: #FFFFFF;
+  --font: 'Inter', sans-serif;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--tertiary);
+  color: var(--primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
