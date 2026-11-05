@@ -186,6 +186,95 @@
   transform: scale(1.05);
 }
 
+/* ── Live-site card: a browser window previewing the deployed site ── */
+.work__card--site {
+  --site-bar-h: 32px;
+  background: #ffffff;
+}
+
+.work__card-site-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--site-bar-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  background: #f3f3f3;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.work__card-site-dots {
+  display: inline-flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.work__card-site-dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d9d9d9;
+}
+.work__card-site-dots i:nth-child(1) { background: #ff5f57; }
+.work__card-site-dots i:nth-child(2) { background: #febc2e; }
+.work__card-site-dots i:nth-child(3) { background: #28c840; }
+
+.work__card-site-url {
+  flex: 1;
+  min-width: 0;
+  max-width: 62%;
+  margin: 0 auto;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--secondary);
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.work__card-site-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1f8f3a;
+}
+
+.work__card-site-live::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #28c840;
+  box-shadow: 0 0 0 3px rgba(40, 200, 64, 0.18);
+}
+
+.work__card-site-view {
+  position: absolute;
+  top: var(--site-bar-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+/* Show the top of the page (nav + hero), not the middle. */
+.work__card--site .work__card-img {
+  object-position: top center;
+  transform-origin: top center;
+}
+
 /* ─── Hover overlay — short project description ── */
 .work__card-overlay {
   position: absolute;
@@ -248,6 +337,39 @@
 .work__card:hover .work__card-overlay-cta {
   transform: translateY(0);
   opacity: 1;
+}
+
+.work__card-overlay-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+
+/* "Visit Site" opens the live URL. It stays unclickable until the overlay is
+   showing, so a plain click on the card still opens the project page. */
+.work__card-overlay-visit {
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+
+.work__card:hover .work__card-overlay-visit {
+  pointer-events: auto;
+}
+
+.work__card-overlay-visit:hover {
+  color: #ffffff;
+  text-decoration-color: #ffffff;
+}
+
+/* Touch screens have no real hover — the project page has the live link. */
+@media (hover: none) {
+  .work__card-overlay-visit {
+    display: none;
+  }
 }
 
 /* ─── Card info below image ────────────── */
@@ -446,6 +568,15 @@
 @media (max-width: 480px) {
   .work__heading {
     font-size: 46px;
+  }
+
+  .work__card--site {
+    --site-bar-h: 28px;
+  }
+
+  .work__card-site-bar {
+    gap: 8px;
+    padding: 0 10px;
   }
 
   .work__track .work__slide {

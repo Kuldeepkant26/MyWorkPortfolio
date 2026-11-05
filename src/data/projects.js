@@ -4,7 +4,143 @@ import mentelSignIn         from '../My_Projects/Mentel/mentel-sign-in.png'
 import mentelMessages       from '../My_Projects/Mentel/mentel-messages.png'
 import mentelSupport        from '../My_Projects/Mentel/mentel-support-ticketing.png'
 
+// ── Billionax — screenshots of the live site (billionax.com) ──
+import billionaxDashboard   from '../My_Projects/Billionax/billionax-dashboard.webp'
+import billionaxGuestApp    from '../My_Projects/Billionax/billionax-guest-app.webp'
+import billionaxQrEntry     from '../My_Projects/Billionax/billionax-qr-entry.webp'
+import billionaxMembership  from '../My_Projects/Billionax/billionax-membership.webp'
+import billionaxStaffPanel  from '../My_Projects/Billionax/billionax-staff-panel.webp'
+import billionaxForHotels   from '../My_Projects/Billionax/billionax-for-hotels.webp'
+
+// ── JK Fashion Embroidery — screenshots of the live site (jkfashionembroidery.com) ──
+import jkHome               from '../My_Projects/JKFashion/jkfashion-home.webp'
+import jkRange              from '../My_Projects/JKFashion/jkfashion-range.webp'
+import jkGallery            from '../My_Projects/JKFashion/jkfashion-gallery.webp'
+import jkProcess            from '../My_Projects/JKFashion/jkfashion-process.webp'
+import jkEnquiry            from '../My_Projects/JKFashion/jkfashion-enquiry.webp'
+
+// ── Naturally Good — screenshots of the live site (naturallygood.in) ──
+import ngHome               from '../My_Projects/NaturallyGood/naturallygood-home.webp'
+import ngProducts           from '../My_Projects/NaturallyGood/naturallygood-products.webp'
+import ngSubscription       from '../My_Projects/NaturallyGood/naturallygood-subscription.webp'
+import ngPremium            from '../My_Projects/NaturallyGood/naturallygood-premium.webp'
+import ngFarmers            from '../My_Projects/NaturallyGood/naturallygood-farmers.webp'
+
+/* Array order = carousel order. Index 0 is the centre card on load and the
+   last item sits to its left, so the three live client sites (Billionax,
+   JK Fashion, Naturally Good) are what visitors see first.
+   `id` is used in the /project/:id route, so never renumber existing ones. */
 export const PROJECTS = [
+  {
+    id: 4,
+    title: 'Billionax',
+    client: 'Freelance',
+    company: 'Billionax',
+    freelance: true,
+    category: 'Full Stack',
+    url: 'billionax.com',
+    liveLink: 'https://billionax.com/',
+    githubLink: '#',
+    image: billionaxDashboard,
+    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Razorpay', 'WebSockets'],
+    year: '2026',
+    role: 'Full-Stack Developer',
+
+    tagline:
+      'A multi-tenant hotel loyalty & payments platform — guest web app, hotel staff panel and super admin, with QR entry, loyalty coins and Razorpay split settlement.',
+
+    description:
+      'Billionax is a multi-tenant loyalty and payments platform for hotels. Guests scan a QR code at the front desk to join, earn Billionax Coins on every stay, and use them to take money off their bill. I\'m building it end to end across three surfaces — a guest mobile web app, a hotel staff panel, and a super admin panel — on React, Node/Express and MongoDB, with Razorpay Route handling split settlement to each hotel.',
+
+    features: [
+      {
+        icon: 'phone',
+        title: 'Guest Mobile Web App',
+        text: 'A mobile-first guest app with nothing to download. Guests sign in with their email, get a digital membership card, and see their coins, savings, bills and privileges in one place.',
+        image: billionaxGuestApp,
+      },
+      {
+        icon: 'qr',
+        title: 'QR-Based Guest Entry',
+        text: 'Every participating hotel has a Billionax QR code at reception. Scanning it is the way in — the guest signs in, their card appears with welcome coins, and bills from the front desk land on their phone.',
+        image: billionaxQrEntry,
+      },
+      {
+        icon: 'coin',
+        title: 'Loyalty Coins & Membership Tiers',
+        text: 'A coin system with Silver, Gold and Platinum tiers. Each hotel sets its own earn rates, how much of a bill coins can cover, and how many nights it takes to move up a tier.',
+        image: billionaxMembership,
+      },
+      {
+        icon: 'card',
+        title: 'Razorpay Split Settlement',
+        text: 'Coins come off the bill and the guest pays the rest by card or UPI. Payments run on Razorpay Route with each hotel as a linked sub-account, behind a payment-provider abstraction that switches between demo and live mode based on the credentials it is given.',
+        image: billionaxDashboard,
+      },
+      {
+        icon: 'search',
+        title: 'Hotel Staff Panel & Live Search',
+        text: 'A separate panel where hotel staff run their programme — track members, issue rewards and settle bills. A WebSocket-driven live search lets the front desk find a guest as they type.',
+        image: billionaxStaffPanel,
+      },
+      {
+        icon: 'layers',
+        title: 'Multi-Tenant, Hotel by Hotel',
+        text: 'Every hotel runs its own programme: enrol guests by QR, send bills to a guest\'s phone, set earn rates and coin limits per service, publish offers to members, and issue an invoice for every paid bill. A super admin panel sits above all of it.',
+        image: billionaxForHotels,
+      },
+    ],
+  },
+
+  {
+    id: 5,
+    title: 'JK Fashion Embroidery',
+    client: 'Freelance',
+    company: 'JK Fashion',
+    freelance: true,
+    category: 'Web',
+    url: 'jkfashionembroidery.com',
+    liveLink: 'https://jkfashionembroidery.com/',
+    githubLink: '#',
+    image: jkHome,
+    tags: ['React', 'SEO', 'Open Graph', 'Brand Identity', 'SVG', 'Python · fontTools'],
+    year: '2026',
+    role: 'Web Designer & Developer',
+
+    tagline:
+      'A B2B website for a Schiffli embroidery & lace manufacturer — plus the brand identity, from 26 logo concepts to custom embroidery SVG artwork.',
+
+    description:
+      'JK Fashion manufactures Schiffli embroidered fabrics, cotton and net laces, and crochet trims for garment and fabric exporters. I built their B2B website to present that range to buyers, with SEO and Open Graph metadata for search and social sharing. I also designed the brand identity behind it — 26 logo concepts across 5 design families, generated as SVGs through a Python/fontTools pipeline — plus custom embroidery SVG artwork.',
+
+    features: [
+      {
+        icon: 'layers',
+        title: 'The Range, Told for Buyers',
+        text: 'An editorial overview of what the factory makes — Schiffli yardage, laces & trims, and custom development — written for exporters who buy by the metre.',
+        image: jkRange,
+      },
+      {
+        icon: 'image',
+        title: 'Look Closer — Rack Gallery',
+        text: 'Pick a garment from the rail and bring its embroidery up close — the thread, the ground and the repeat — at the scale a buyer would inspect it.',
+        image: jkGallery,
+      },
+      {
+        icon: 'factory',
+        title: 'Inside the Floor',
+        text: 'Real photographs of the unit, the machines and the people who run them, followed by the production flow from design punching through checking and inspection to dispatch.',
+        image: jkProcess,
+      },
+      {
+        icon: 'mail',
+        title: 'Buyer Enquiry Flow',
+        text: 'A "Tell Us What You Need" form where buyers send a reference, a rough idea or a shade card, alongside direct phone and WhatsApp contact.',
+        image: jkEnquiry,
+      },
+    ],
+  },
+
   {
     id: 1,
     title: 'Mentel',
@@ -162,6 +298,55 @@ export const PROJECTS = [
         title: 'Superadmin Panel & Moderation',
         text: 'A role-based admin suite — manage people, ban with duration & reason, soft-delete accounts, hide or remove posts, and review & reply to user-submitted reports.',
         screen: 'admin',
+      },
+    ],
+  },
+
+  {
+    id: 6,
+    title: 'Naturally Good',
+    client: 'Freelance',
+    company: 'Naturally Good',
+    freelance: true,
+    category: 'Web',
+    url: 'naturallygood.in',
+    liveLink: 'https://www.naturallygood.in/',
+    githubLink: '#',
+    image: ngHome,
+    tags: ['React', 'AWS EC2', 'Nginx', 'Certbot SSL', 'SEO'],
+    year: '2024 – 2025',
+    role: 'Web Developer (React + AWS)',
+
+    tagline:
+      'The official brand website for a farm-to-table natural produce company — built in React and run in production on AWS.',
+
+    description:
+      'Naturally Good grows natural vegetables on its own farms and delivers them to homes on subscription. I designed, built and deployed the brand\'s complete official website end to end in React — a reusable component architecture, performance and SEO work, and production releases on AWS EC2 (Amazon Linux + Nginx), including SSL certificate renewals with Certbot.',
+
+    features: [
+      {
+        icon: 'leaf',
+        title: 'Seasonal Produce Catalogue',
+        text: '"What\'s in Your Bag?" — a tabbed catalogue of veggies & exotics, staples, salads and greens that shows exactly what arrives in each seasonal bag.',
+        image: ngProducts,
+      },
+      {
+        icon: 'layers',
+        title: 'Subscription Plans',
+        text: 'Plan cards for every household size — 1–3 or 3–5 people — across four wellness tiers, with per-bag pricing, savings and what each plan includes.',
+        image: ngSubscription,
+      },
+      {
+        icon: 'shop',
+        title: 'Premium Offerings',
+        text: 'A second tabbed shelf for premium products — A2 cow ghee, raw honey, microgreens kits and nutrition packs — each with pricing and a direct order action.',
+        image: ngPremium,
+      },
+      {
+        icon: 'server',
+        title: 'Multi-Page Site, Hosted on AWS',
+        text: 'Dedicated pages for the farmers, the farms and the brand story, built from one set of reusable components. Every release ships to AWS EC2 behind Nginx, with SSL certificates renewed through Certbot.',
+        image: ngFarmers,
       },
     ],
   },

@@ -64,10 +64,18 @@ const About = () => {
                 <span>Oodles Technologies</span>
               </div>
             </div>
+            <div className="about__timeline-item about__timeline-item--active">
+              <div className="about__timeline-dot about__timeline-dot--active" />
+              <div className="about__timeline-content">
+                <span className="about__timeline-period">2026 – Present</span>
+                <strong>Freelance Full-Stack Developer</strong>
+                <span>Billionax · JK Fashion Embroidery</span>
+              </div>
+            </div>
             <div className="about__timeline-item">
               <div className="about__timeline-dot" />
               <div className="about__timeline-content">
-                <span className="about__timeline-period">Apr 2024 – Oct 2024</span>
+                <span className="about__timeline-period">2024 – 2025</span>
                 <strong>Freelance Developer</strong>
                 <span>Naturally Good · naturallygood.in</span>
               </div>

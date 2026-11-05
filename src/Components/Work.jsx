@@ -5,7 +5,7 @@ import { PROJECTS } from '../data/projects'
 import { KinlyPreview } from './KinlyScreens'
 import { OrbiPreview } from './OrbiScreens'
 
-const FILTERS = ['All', 'Full Stack', 'Mobile', 'AI']
+const FILTERS = ['All', 'Full Stack', 'Web', 'Mobile', 'AI']
 const MOBILE_BREAKPOINT = 768
 
 /* ── Arrow icon ── */
@@ -18,9 +18,11 @@ const ArrowDiag = ({ size = 18 }) => (
 /* ── Single project card ── */
 const ProjectCard = ({ project, isCenter, onClick }) => {
   const isMobileApp = project.kind === 'mobile'
+  // Projects with a real deployed URL get a browser-window preview of the live site.
+  const isLiveSite = !isMobileApp && project.liveLink && project.liveLink !== '#'
   return (
     <div
-      className={`work__card${isCenter ? ' work__card--center' : ''}${isMobileApp ? ' work__card--phone' : ''}`}
+      className={`work__card${isCenter ? ' work__card--center' : ''}${isMobileApp ? ' work__card--phone' : ''}${isLiveSite ? ' work__card--site' : ''}`}
       onClick={onClick}
     >
       {isMobileApp ? (
@@ -29,6 +31,22 @@ const ProjectCard = ({ project, isCenter, onClick }) => {
             ? <OrbiPreview start={project.cover} />
             : <KinlyPreview start={project.cover} />}
         </div>
+      ) : isLiveSite ? (
+        <>
+          <div className="work__card-site-bar">
+            <span className="work__card-site-dots" aria-hidden="true"><i /><i /><i /></span>
+            <span className="work__card-site-url">{project.url}</span>
+            <span className="work__card-site-live">Live</span>
+          </div>
+          <div className="work__card-site-view">
+            <img
+              src={project.image}
+              alt={`${project.title} — live site preview`}
+              className="work__card-img"
+              loading="lazy"
+            />
+          </div>
+        </>
       ) : (
         <img
           src={project.image}
@@ -40,9 +58,22 @@ const ProjectCard = ({ project, isCenter, onClick }) => {
       <div className="work__card-overlay">
         <span className="work__card-overlay-cat">{project.category}</span>
         <p className="work__card-overlay-desc">{project.tagline || project.description}</p>
-        <span className="work__card-overlay-cta">
-          View Project <ArrowDiag size={14} />
-        </span>
+        <div className="work__card-overlay-actions">
+          <span className="work__card-overlay-cta">
+            View Project <ArrowDiag size={14} />
+          </span>
+          {isLiveSite && (
+            <a
+              className="work__card-overlay-cta work__card-overlay-visit"
+              href={project.liveLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Visit Site <ArrowDiag size={14} />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   )
