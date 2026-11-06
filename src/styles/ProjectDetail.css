@@ -455,6 +455,15 @@
   letter-spacing: -0.03em;
 }
 
+/* Small disclosure under the heading, e.g. when screens are recreated mockups. */
+.pd__features-note {
+  max-width: 520px;
+  margin: 14px auto 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--secondary);
+}
+
 .pd__feature-list {
   display: flex;
   flex-direction: column;
@@ -544,6 +553,34 @@
   font-size: 15px;
   color: var(--secondary);
   line-height: 1.8;
+}
+
+/* ── Text-only features (no screenshots available) — a card grid ── */
+/* Double class so the mobile `.pd__feature-list { gap: 56px }` rule can't override it. */
+.pd__feature-list.pd__feature-list--cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.pd__feature-list--cards .pd__feature {
+  display: block;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 22px;
+  padding: 32px 30px 34px;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pd__feature-list--cards .pd__feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.08);
+}
+
+.pd__feature-list--cards .pd__feature-name {
+  font-size: 20px;
+  line-height: 1.3;
 }
 
 /* ─── Footer CTA ───────────────────────── */

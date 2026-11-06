@@ -3,7 +3,18 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { PROJECTS } from '../data/projects'
 import { KINLY_SCREENS } from '../Components/KinlyScreens'
 import { ORBI_SCREENS } from '../Components/OrbiScreens'
+import {
+  SiloBotBuilder, SiloImproveDescription, SiloDocSuggestions,
+  SiloMockFrame, SiloMockZoom,
+} from '../Components/SiloScreens'
 import '../styles/ProjectDetail.css'
+
+/* Hand-built web-app screens, referenced by a feature's `mock` key. */
+const WEB_MOCKS = {
+  'silo-bot':      SiloBotBuilder,
+  'silo-describe': SiloImproveDescription,
+  'silo-doc':      SiloDocSuggestions,
+}
 
 /* ── Small inline icons for feature headers ── */
 const FEATURE_ICONS = {
@@ -139,6 +150,25 @@ const FEATURE_ICONS = {
       <path d="M7 7.5h.01M7 16.5h.01" />
     </svg>
   ),
+  bot: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="8" width="16" height="12" rx="3" />
+      <path d="M12 8V4.5M12 4.5h.01M2 13v3M22 13v3" />
+      <path d="M9 13.5v1M15 13.5v1M10 17.5h4" />
+    </svg>
+  ),
+  wand: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 20L15 9M13 7l2-2 4 4-2 2" />
+      <path d="M18 2.5l.6 1.6 1.6.6-1.6.6-.6 1.6-.6-1.6-1.6-.6 1.6-.6.6-1.6zM6 3l.5 1.3L7.8 5l-1.3.5L6 6.8l-.5-1.3L4.2 5l1.3-.5L6 3z" />
+    </svg>
+  ),
+  doc: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z" />
+      <path d="M14 3v5h5M9 13h6M9 17h4" />
+    </svg>
+  ),
 }
 
 const ArrowDiag = () => (
@@ -248,6 +278,7 @@ const ProjectDetail = () => {
   const navigate = useNavigate()
   const project  = PROJECTS.find(p => p.id === parseInt(id))
   const [lightbox, setLightbox] = useState(null)
+  const [mockZoom, setMockZoom] = useState(null)
 
   const openLightbox = useCallback((data) => setLightbox(data), [])
 
@@ -265,6 +296,7 @@ const ProjectDetail = () => {
   // Pick the right hand-built screen set for this project.
   const SCREENS = project.screens === 'orbi' ? ORBI_SCREENS : KINLY_SCREENS
   const CoverScreen = isMobile ? SCREENS[project.cover] : null
+  const textOnlyFeatures = project.features?.every(f => !f.image && !f.screen && !f.mock)
 
   return (
     <div className={`pd${project.screens === 'orbi' ? ' pd--orbi' : ''}`}>
@@ -344,11 +376,15 @@ const ProjectDetail = () => {
           <div className="pd__features-head">
             <span className="pd__section-label">Key Features</span>
             <h2 className="pd__features-title">What it does</h2>
+            {project.mockNote && <p className="pd__features-note">{project.mockNote}</p>}
           </div>
 
-          <div className={`pd__feature-list${isMobile ? ' pd__feature-list--mobile' : ''}`}>
+          {/* Features with no screenshot, phone screen or web mock render as a card grid. */}
+          <div className={`pd__feature-list${isMobile ? ' pd__feature-list--mobile' : ''}${textOnlyFeatures ? ' pd__feature-list--cards' : ''}`}>
             {project.features.map((f) => {
               const Screen = f.screen ? SCREENS[f.screen] : null
+              const Mock = f.mock ? WEB_MOCKS[f.mock] : null
+              const hasMedia = Boolean(Screen || Mock || f.image)
               return (
                 <article className="pd__feature" key={f.title}>
                   <div className="pd__feature-text">
@@ -356,9 +392,13 @@ const ProjectDetail = () => {
                     <h3 className="pd__feature-name">{f.title}</h3>
                     <p className="pd__feature-desc">{f.text}</p>
                   </div>
-                  <div className={`pd__feature-media${Screen ? ' pd__feature-media--phone' : ''}`}>
-                    {Screen ? <Screen /> : <Shot src={f.image} alt={f.title} onOpen={openLightbox} />}
-                  </div>
+                  {hasMedia && (
+                    <div className={`pd__feature-media${Screen ? ' pd__feature-media--phone' : ''}`}>
+                      {Screen ? <Screen />
+                        : Mock ? <SiloMockFrame screen={Mock} label={f.title} onOpen={() => setMockZoom({ screen: Mock, label: f.title })} />
+                        : <Shot src={f.image} alt={f.title} onOpen={openLightbox} />}
+                    </div>
+                  )}
                 </article>
               )
             })}
@@ -380,6 +420,9 @@ const ProjectDetail = () => {
 
       {/* ── Animated image lightbox ── */}
       {lightbox && <Lightbox image={lightbox} onClose={() => setLightbox(null)} />}
+
+      {/* ── Full-size view of a hand-built web mock ── */}
+      {mockZoom && <SiloMockZoom screen={mockZoom.screen} label={mockZoom.label} onClose={() => setMockZoom(null)} />}
 
     </div>
   )

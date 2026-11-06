@@ -48,7 +48,7 @@ const About = () => {
                 <path d="M2 12L12 17L22 12" stroke="#7B7B7B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <div className="about__stat-number">2.5+</div>
+            <div className="about__stat-number">2+</div>
             <p className="about__stat-label">
               Years of professional experience across internships, freelancing, and product engineering
             </p>
@@ -59,17 +59,17 @@ const About = () => {
             <div className="about__timeline-item about__timeline-item--active">
               <div className="about__timeline-dot about__timeline-dot--active" />
               <div className="about__timeline-content">
-                <span className="about__timeline-period">Apr 2025 – Present</span>
-                <strong>Software Developer</strong>
-                <span>Oodles Technologies</span>
-              </div>
-            </div>
-            <div className="about__timeline-item about__timeline-item--active">
-              <div className="about__timeline-dot about__timeline-dot--active" />
-              <div className="about__timeline-content">
                 <span className="about__timeline-period">2026 – Present</span>
                 <strong>Freelance Full-Stack Developer</strong>
                 <span>Billionax · JK Fashion Embroidery</span>
+              </div>
+            </div>
+            <div className="about__timeline-item">
+              <div className="about__timeline-dot" />
+              <div className="about__timeline-content">
+                <span className="about__timeline-period">Apr 2025 – Jul 2026</span>
+                <strong>Frontend Developer</strong>
+                <span>Oodles Technologies · Full-time</span>
               </div>
             </div>
             <div className="about__timeline-item">
@@ -83,9 +83,9 @@ const About = () => {
             <div className="about__timeline-item">
               <div className="about__timeline-dot" />
               <div className="about__timeline-content">
-                <span className="about__timeline-period">Oct 2023 – Mar 2024</span>
+                <span className="about__timeline-period">Nov 2023 – Apr 2024</span>
                 <strong>Teaching Assistant</strong>
-                <span>Full-Stack Development Internship</span>
+                <span>Apna College (Jainemo Pvt. Ltd.) · Internship</span>
               </div>
             </div>
           </div>

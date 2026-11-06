@@ -19,6 +19,11 @@ import jkGallery            from '../My_Projects/JKFashion/jkfashion-gallery.web
 import jkProcess            from '../My_Projects/JKFashion/jkfashion-process.webp'
 import jkEnquiry            from '../My_Projects/JKFashion/jkfashion-enquiry.webp'
 
+// ── SILO — public homepage of the live site (silo-main.vercel.app).
+//    The AI features live behind the login, so the project page shows
+//    hand-built mock screens instead (see Components/SiloScreens.jsx).
+import siloHome             from '../My_Projects/SILO/silo-home.webp'
+
 // ── Naturally Good — screenshots of the live site (naturallygood.in) ──
 import ngHome               from '../My_Projects/NaturallyGood/naturallygood-home.webp'
 import ngProducts           from '../My_Projects/NaturallyGood/naturallygood-products.webp'
@@ -137,6 +142,52 @@ export const PROJECTS = [
         title: 'Buyer Enquiry Flow',
         text: 'A "Tell Us What You Need" form where buyers send a reference, a rough idea or a shade card, alongside direct phone and WhatsApp contact.',
         image: jkEnquiry,
+      },
+    ],
+  },
+
+  {
+    id: 7,
+    title: 'SILO',
+    client: 'Oodles Technologies',
+    company: 'Oodles Technologies',
+    category: 'AI',
+    url: 'silo-main.vercel.app',
+    liveLink: 'https://silo-main.vercel.app/',
+    githubLink: '#',
+    image: siloHome,
+    tags: ['Node.js', 'Express', 'AI Agents', 'LLM Integration', 'REST APIs'],
+    year: '2026',
+    role: 'Developer — AI Features',
+
+    tagline:
+      'AI features for a legal-operations platform — a personalised AI bot builder, AI-improved descriptions, and smart suggestions while drafting legal documents.',
+
+    description:
+      'SILO is a legal-operations platform that helps businesses automate their legal consultancies — legal requests come in as tickets, get assigned across the team, and are answered faster with the SILO AI Agent. I built multiple AI features into SILO\'s dashboard: a builder for personalised AI bots, AI that improves descriptions, and AI suggestions while legal documents are being prepared.',
+
+    // Shown under "What it does" — the screens are illustrative, not screenshots.
+    mockNote: 'Screens recreated for this portfolio — the live dashboard sits behind the client\'s login.',
+
+    // `mock` = a hand-built screen from SiloScreens.jsx (keys in ProjectDetail's WEB_MOCKS).
+    features: [
+      {
+        icon: 'bot',
+        title: 'Personalised AI Bot Builder',
+        text: 'Teams build their own AI bot right inside the dashboard, personalised to how they work, so routine legal requests get answered faster.',
+        mock: 'silo-bot',
+      },
+      {
+        icon: 'wand',
+        title: 'AI-Improved Descriptions',
+        text: 'One action turns a rough description into a clear, complete one — AI rewrites and tightens the text before it goes out.',
+        mock: 'silo-describe',
+      },
+      {
+        icon: 'doc',
+        title: 'AI Suggestions for Legal Documents',
+        text: 'While a legal document is being prepared, AI offers suggestions as it takes shape, guiding the person drafting it.',
+        mock: 'silo-doc',
       },
     ],
   },
